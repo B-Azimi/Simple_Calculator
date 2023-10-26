@@ -1,4 +1,22 @@
     
+    const changResult = () => {
+        const resultTxt = document.querySelector('.result-txt');
+    
+        if (resultTxt.innerText.indexOf('.') === -1) {
+
+            const resultArray = resultTxt.innerText.split('');
+    
+            const spacedResult = resultArray.map((char, index) =>
+                (index > 0 && (resultArray.length - index) % 3 === 0) ? ` ${char}` : char).join('');
+    
+            document.querySelector('.result-txt').innerText = spacedResult;
+        }
+    }
+    
+  
+    
+    
+    
     const clear_txt = () => {
         document.querySelector('.inputs-txt').innerText = '';
         document.querySelector('.result-txt').innerText = '';     
@@ -48,6 +66,7 @@
     }
 
     const equals = () => {
+        
         const inputText = document.querySelector('.inputs-txt').innerText;
             const result = eval(inputText);
             if (document.querySelector('.result-txt').innerText &&
@@ -62,6 +81,7 @@
             }
 
             }
+            changResult();
             
     }
 
