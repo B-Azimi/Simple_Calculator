@@ -1,13 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-
+:root{
+    --white-color: #fff;
+    --Primary-color:#313131;
+    --Accent-color:#CA3E47;
+    --font-family: Roboto Mono;
+}
 
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: Roboto Mono ;
+    font-family: var(--font-family) ;
     border-radius: 20px;
     background: radial-gradient(160.3% 78.68% at 16.98% 14.39%, #444 45.19%, #313131 95.67%);
     box-shadow: 1px 3px 26px 28px rgba(0, 0, 0, 0.10), 0px 1px 12px 7px rgba(0, 0, 0, 0.25);
@@ -59,7 +64,7 @@ button:hover {
 
 
 .display .inputs-txt {
-    color: var(--white, #FFF);
+    color: var(--white-color);
     font-size: 26px;
     font-style: normal;
     font-weight: 300;
@@ -72,7 +77,7 @@ button:hover {
 }
 
 .display .result-txt {
-    color: var(--white, #FFF);
+    color: var(--white-color);
     font-size: 42px;
     font-style: normal;
     font-weight: 400;
@@ -136,7 +141,7 @@ button:hover {
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
-    color: var(--white, #FFF);
+    color: var(--white-color);
     text-align: center;
     font-size: 25px;
     font-style: normal;
@@ -157,7 +162,7 @@ button:hover {
     opacity: 1;
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.20);
-    color: var(--white, #FFF);
+    color: var(--white-color);
     transition: all 0.2s ease-in-out;
 }
 
@@ -169,7 +174,7 @@ button:hover {
     height: 392px;
     padding: 42px 5px 5px;
     border-radius: 100px;
-    background: var(--Primary, #313131);
+    background: var(--Primary-color);
 }
 
 .functions .btn {
@@ -181,7 +186,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     opacity: 0.6;
-    color: var(--white, #FFF);
+    color: var(--white-color);
     text-align: center;
     font-size: 25px;
     font-style: normal;
@@ -193,7 +198,7 @@ button:hover {
 .functions button:last-child {
 
     opacity: 0.6;
-    background: var(--Accent, #CA3E47);
+    background: var(--Accent-color);
     box-shadow: 0px 0px 5px 0px rgba(202, 62, 71, 0.30), 0px 4px 4px 0px rgba(0, 0, 0, 0.20);
 }
 
@@ -204,8 +209,8 @@ button:hover {
 .btn-add:hover {
     opacity: 1;
     cursor: pointer;
-    background-color: rgba(#313131, 0.20);
-    color: var(--white, #FFF);
+    background-color: rgba(var(--Primary-color), 0.20);
+    color: var(--white-color);
     transition: all 0.2s ease-in-out;
 } 
 
