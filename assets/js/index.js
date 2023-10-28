@@ -18,16 +18,13 @@
         document.querySelector('.result-txt').innerText = '';     
     }
 // Making negative or positive input numbers
-    const pos_neg = () => { 
-       
-        if (document.querySelector('.inputs-txt').innerText.length < 30)  // Creating an input limit of up to 30 characters
-         {
-            const input = document.querySelector('.inputs-txt');
+    const pos_neg = () => {
+       const input = document.querySelector('.inputs-txt');
+        // Creating an input limit of up to 30 characters
+        if (input.innerText.length < 30) {
             input.innerText = input.innerText.startsWith('-') ?
              input.innerText.substring(1) : '-' + input.innerText;   
         }
-
-        
     }
 
 // input numbers
