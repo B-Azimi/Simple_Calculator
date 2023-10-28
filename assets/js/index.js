@@ -62,23 +62,19 @@
     }
 // calculation
     const equals = () => {
-       
-            const inputText = document.querySelector('.inputs-txt').innerText;
-            const result = eval(inputText);
-            if (document.querySelector('.result-txt').innerText &&
-             document.querySelector('.result-txt').innerText !== 'Error' )  // If there was a number in the output 
-             {
-                document.querySelector('.inputs-txt').innerText = result;  // Transfer the result to the input field for further operation
-                document.querySelector('.result-txt').innerText = '';
-            } else{  
-                   if (isNaN(result) || !isFinite(result)) {
-                document.querySelector('.result-txt').innerText = 'Error';
-            } else {
-                document.querySelector('.result-txt').innerText = result;
-            }
-
-            }
-            changResult();
+        const result = document.querySelector('.result-txt')
+        const input = document.querySelector('.inputs-txt');
+        let resultValue = eval(input.innerText);
+        // If there was a number in the output
+        // Transfer the result to the input field for further operation
+        if (result.innerText && result.innerText !== 'Error' ) {
+            input.innerText = resultValue;
+            resultValue = '';
+        } else if (isNaN(resultValue) || !isFinite(resultValue)) {
+            resultValue = 'Error';
+        }
+        result.innerText = resultValue
+        changResult();
             
     }
 
