@@ -32,18 +32,15 @@
 
 // input numbers
     const addNumber = (num) => {
-        
-        if (document.querySelector('.inputs-txt').innerText.length < 30) {
-            if (document.querySelector('.result-txt').innerText) // Clearing previous data before a new entry is entered
-             {
-            document.querySelector('.inputs-txt').innerText = '';
-            document.querySelector('.result-txt').innerText = '';
-            const input = document.querySelector('.inputs-txt');
+        const input = document.querySelector('.inputs-txt')
+        const result = document.querySelector('.result-txt')
+        if (input.innerText.length < 30) {
+            // Clearing previous data before a new entry is entered
+            if (result.innerText) {
+                input.innerText = '';
+                result.innerText = '';
+            }
             input.innerText += num;
-        } else{
-            const input = document.querySelector('.inputs-txt');
-            input.innerText += num;
-        }
         }
        
     }
