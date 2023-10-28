@@ -1,7 +1,6 @@
     // Create a space between every three numbers in the output
     const changResult = () => {
         const resultTxt = document.querySelector('.result-txt');
-    
         if (resultTxt.innerText.indexOf('.') === -1) {
 
             const resultArray = resultTxt.innerText.split('');
@@ -33,6 +32,7 @@
 
 // input numbers
     const addNumber = (num) => {
+        
         if (document.querySelector('.inputs-txt').innerText.length < 30) {
             if (document.querySelector('.result-txt').innerText) // Clearing previous data before a new entry is entered
              {
@@ -49,16 +49,18 @@
     }
 // input functions
     const addSymbol = (symbol) => {
-        if (document.querySelector('.inputs-txt').innerText.length < 30) {
-            const input = document.querySelector('.inputs-txt');
-            if (input.innerText === '' &&
-             (symbol === '*' || symbol === '/' || symbol === '+' 
-             || symbol === '-' || symbol === '%' || symbol === '.')) // If there is no number before the entered symbol
-              {
-                input.innerText = '0' + symbol;
-            } else {
-                input.innerText += symbol;
-            }
+        const input = document.querySelector('.inputs-txt');
+        if (input.innerText.length < 30) {
+            let processSymbol = symbol;
+             // If there is no number before the entered symbol
+            const inputIsEmpty = input.innerText === '';
+            const symbolWithLeadingZero  = ['*','/','+','-','.','%'] ;
+            const symbolIsSymbol = symbolWithLeadingZero.includes(symbol);
+            if (inputIsEmpty && symbolIsSymbol) {
+                processSymbol = '0' + symbol;
+            } 
+            // add other conditions here......
+            input.innerText += processSymbol;
         }
     }
 // calculation
