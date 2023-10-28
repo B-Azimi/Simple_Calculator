@@ -16,17 +16,41 @@
     const clear_txt = () => {
         document.querySelector('.inputs-txt').innerText = '';
         document.querySelector('.result-txt').innerText = '';     
-    }
-// Making negative or positive input numbers
-    const pos_neg = () => {
-       const input = document.querySelector('.inputs-txt');
-        // Creating an input limit of up to 30 characters
-        if (input.innerText.length < 30) {
-            input.innerText = input.innerText.startsWith('-') ?
-             input.innerText.substring(1) : '-' + input.innerText;   
-        }
+        updateInputDisplay({
+            reset: true
+        })
     }
 
+let memory = []
+const updateInputDisplay = ({
+    reset = false,
+    append = true,
+    value = null
+} = {}) => {
+    const input = document.querySelector('.inputs-txt')
+    if (reset && append) {
+        memory = []
+    } else if (reset && !append && value !== null) {
+        memory[memory.length - 1] = value
+    } else if (!reset && append && value !== null) {
+        memory.push(value)
+    } else if (!reset && !append && value !== null) {
+        memory[memory.length - 1] = memory[memory.length - 1] + value 
+    }
+    input.innerText = memory.join(' ')
+} 
+
+// Making negative or positive input numbers
+    const pos_neg = () => {
+        const lastCommand = memory[memory.length - 1];
+        if (!isNaN(+lastCommand)) {
+            updateInputDisplay({
+                append: false,
+                reset: true,
+                value: `${+lastCommand * -1}`
+            })
+        }
+    }
 // input numbers
     const addNumber = (num) => {
         const input = document.querySelector('.inputs-txt')
@@ -34,10 +58,22 @@
         if (input.innerText.length < 30) {
             // Clearing previous data before a new entry is entered
             if (result.innerText) {
-                input.innerText = '';
+                updateInputDisplay({ reset: true })
                 result.innerText = '';
             }
-            input.innerText += num;
+            // add new number to memory only if last input was a symbol
+            const lastCommand = memory[memory.length - 1]
+            
+            if (isNaN(+lastCommand)) {
+                updateInputDisplay({
+                    value: num
+                })
+            } else {
+                updateInputDisplay({
+                    append: false,
+                    value: num
+                })
+            }
         }
        
     }
@@ -47,14 +83,17 @@
         if (input.innerText.length < 30) {
             let processSymbol = symbol;
              // If there is no number before the entered symbol
-            const inputIsEmpty = input.innerText === '';
+            const inputIsEmpty = !memory.length;
             const symbolWithLeadingZero  = ['*','/','+','-','.','%'] ;
             const symbolIsSymbol = symbolWithLeadingZero.includes(symbol);
             if (inputIsEmpty && symbolIsSymbol) {
                 processSymbol = '0' + symbol;
             } 
+            // TODO: change symbol if last command was a symbol
             // add other conditions here......
-            input.innerText += processSymbol;
+            updateInputDisplay({
+                value: processSymbol
+            })
         }
     }
 // calculation
